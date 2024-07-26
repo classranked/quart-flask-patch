@@ -22,14 +22,14 @@ def _patch_asyncio() -> None:
         asyncio.futures.Future  # type: ignore
     ) = asyncio.futures._PyFuture  # type: ignore
 
-    current_policy = asyncio.get_event_loop_policy()
-    if hasattr(asyncio, "unix_events"):
-        target_policy = asyncio.unix_events._UnixDefaultEventLoopPolicy
-    else:
-        target_policy = object  # type: ignore
+    # current_policy = asyncio.get_event_loop_policy()
+    # if hasattr(asyncio, "unix_events"):
+    #     target_policy = asyncio.unix_events._UnixDefaultEventLoopPolicy
+    # else:
+    #     target_policy = object  # type: ignore
 
-    if not isinstance(current_policy, target_policy):
-        raise RuntimeError("Flask Patching only works with the default event loop policy")
+    # if not isinstance(current_policy, target_policy):
+    #     raise RuntimeError("Flask Patching only works with the default event loop policy")
 
     _patch_loop()
     _patch_task()
